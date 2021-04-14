@@ -31,10 +31,18 @@ def readInput():
     # Remove the column at index 0 (index scheme)
     df_column_numbers.remove(0)
     # Return original data without the first column 
-    df_removed_header.iloc[:, df_column_numbers] 
+    df_removed_header.iloc[:, df_column_numbers]
+    # Check number of missing entries then sum both axis for total
+    df_check_error = df_removed_header.isnull().sum().sum()
     # Check against any missing data within the file and replace with the mean of the feature
     df_filled_data = df_removed_header.fillna(df_removed_header.mean())
+    df_arr = df_filled_data.to_numpy()
+    df_row = len(df_arr)
+    df_col = len(df_arr[0])
+    df_total = df_row*df_col
+    df_err = df_check_error/df_total
     df_data = df_filled_data
+    print(str(df_err*100)+'% error from missing data.')
     print('Data file has been loaded.')
     
 # Iterate through every column for calculating mean
