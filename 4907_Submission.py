@@ -230,9 +230,11 @@ def map_indices():
     plt.scatter(pca_data[:,0],pca_data[:,1], c=cluster_indices, cmap='rainbow')
     fig.savefig('Output/KMeans_Clustered_Graph.png')
     plt.close(fig) 
+    ax = plt.figure(figsize = (10,10))
+    plt.scatter(pca_data[:,0],pca_data[:,1], c=cluster_indices, cmap='rainbow')
     plt.scatter(cluster_centers[:,0] ,cluster_centers[:,1], color='black')
-    fig.savefig('Output/KMeans_Clustered_Graph_With_Centroids.png')
-    plt.close(fig) 
+    ax.savefig('Output/KMeans_Clustered_Graph_With_Centroids.png')
+    plt.close(ax) 
     print('Kmeans has finished clustering.')
 
 # Get iterations input value
